@@ -196,7 +196,7 @@ export default function AboutUs() {
                                         className="relative h-64 sm:h-72 lg:h-80 rounded-lg overflow-hidden shadow-2xl group border border-blue-400"
                                     >
                                         <Image
-                                            src="/about1.jpeg"
+                                            src="/team work.png"
                                             alt="RootX Technologies Team"
                                             fill
                                             className="object-cover group-hover:scale-110 transition-transform duration-700"
@@ -212,7 +212,7 @@ export default function AboutUs() {
                                     className="relative h-48 sm:h-56 lg:h-64 rounded-lg overflow-hidden shadow-2xl group border border-blue-400"
                                 >
                                     <Image
-                                        src="/about2.jpg"
+                                        src="/team work 1.png"
                                         alt="Mobile App Development"
                                         fill
                                         className="object-cover group-hover:scale-110 transition-transform duration-700"
@@ -227,7 +227,7 @@ export default function AboutUs() {
                                     className="relative h-48 sm:h-56 lg:h-64 rounded-lg overflow-hidden shadow-2xl group border border-blue-400"
                                 >
                                     <Image
-                                        src="/about3.jpg"
+                                        src="/team work 2.png"
                                         alt="Web Development"
                                         fill
                                         className="object-cover group-hover:scale-105 transition-transform duration-700"

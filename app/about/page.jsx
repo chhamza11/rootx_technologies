@@ -476,7 +476,7 @@ export default function AboutPage() {
                             className="relative h-96 rounded-2xl overflow-hidden shadow-2xl w-full"
                         >
                             <Image
-                                src="/about3.jpg"
+                                src="/team work 3.png"
                                 alt="Team working"
                                 fill
                                 className="object-cover"

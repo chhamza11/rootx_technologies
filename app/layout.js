@@ -25,9 +25,9 @@ export const metadata = {
   title: "RootX Technologies",
   description: "Professional web and mobile development services with cutting-edge technologies",
   icons: {
-    icon: '/logos.png',
-    shortcut: '/logos.png',
-    apple: '/logos.png',
+    icon: '/Favicon.svg',
+    shortcut: '/Favicon.svg',
+    apple: '/Favicon.svg',
   },
 };
 

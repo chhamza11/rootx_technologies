@@ -14,6 +14,8 @@ export default function TeamMembers() {
         { name: "Ayaz Aslam", image: "/team/ayaz-2.png", role: "Flutter Developer" },
         { name: "Haris Zeeshan", image: "/team/haris-2.png", role: "Web Developer" },
         { name: "Abdul Moiz", image: "/team/moiz-2.png", role: "UI/UX Designer" },
+        { name: "Mr. Zeeshan Niazi ", image: "/team/zeehan.png", role: "Chief technology officer (CTO)" },
+        { name: "Ali Ahmad  ", image: "/team/ali.png", role: "Business developer" },
     ];
 
     const handleSeeLess = () => {
