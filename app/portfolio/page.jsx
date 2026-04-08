@@ -20,7 +20,8 @@ export default function PortfolioPage() {
             category: "Financial Platform",
             description: "A comprehensive financial management platform offering advanced analytics and portfolio tracking for modern businesses.",
             image: "/Aconomy.webp",
-            link: "/projects/1"
+            link: "/projects/1",
+
         },
         {
             id: 2,
@@ -51,27 +52,30 @@ export default function PortfolioPage() {
             title: "Appointzme",
             category: "Productivity Suite",
             description: "Smart appointment scheduling platform that simplifies booking management and enhances customer engagement.",
-            image: "/with name.png",
+            image: "/with_name_final.png",
             link: "https://play.google.com/store/apps/details?id=com.appointzme.business",
-            isExternal: true
+            isExternal: true,
+            
         },
         {
             id: 6,
             title: "Eco Ride",
             category: "Transportation",
             description: "Eco-friendly ride-sharing platform promoting sustainable transportation and reducing carbon footprint.",
-            image: "/Rider.png",
+            image: "/EcoRide.png",
             link: "https://play.google.com/store/apps/details?id=com.mightybell.ecomondemand",
-            isExternal: true
+            isExternal: true,
+            
         },
         {
             id: 7,
             title: "Racket Score",
             category: "Gaming",
             description: "Interactive gaming platform offering immersive experiences and engaging gameplay for all ages.",
-            image: "/Racket Score.png",
+            image: "/Racket.png",
             link: "https://play.google.com/store/apps/details?id=com.padel.score",
-            isExternal: true
+            isExternal: true,
+            objectFit: "object-contain"
         },
     ];
 
@@ -220,7 +224,7 @@ export default function PortfolioPage() {
                                         src={project.image}
                                         alt={project.title}
                                         fill
-                                        className="object-cover object-center transition-transform duration-700"
+                                        className={`${project.objectFit || 'object-cover'} object-center transition-transform duration-700`}
                                         sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                                     />
 
@@ -243,7 +247,7 @@ export default function PortfolioPage() {
 
                                         {/* View Project Button */}
                                         {project.isExternal ? (
-                                            <a 
+                                            <a
                                                 href={project.link}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
@@ -383,7 +387,7 @@ export default function PortfolioPage() {
                                     number: "5",
                                     title: "Deployment",
                                     icon: (
-                                       <div className="relative w-14 h-14 sm:w-15 sm:h-15" style={{ filter: 'drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15))' }}>
+                                        <div className="relative w-14 h-14 sm:w-15 sm:h-15" style={{ filter: 'drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15))' }}>
                                             <Image
                                                 src="/dep.png"
                                                 alt="Satisfaction Rate"

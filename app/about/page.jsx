@@ -300,7 +300,7 @@ export default function AboutPage() {
                         >
                             <div className="grid grid-cols-2 gap-4">
                                 <motion.div 
-                                    className="relative h-64 rounded-2xl overflow-hidden shadow-xl"
+                                    className="relative h-73 rounded-2xl overflow-hidden shadow-xl"
                                     initial={{ opacity: 0, y: 50 }}
                                     whileInView={{ opacity: 1, y: 0 }}
                                     transition={{ duration: 0.8, delay: 0.2 }}
@@ -308,7 +308,7 @@ export default function AboutPage() {
                                     whileHover={{ scale: 1.05, rotate: 2 }}
                                 >
                                     <Image
-                                        src="/about1.jpeg"
+                                        src="/rootx.png"
                                         alt="Team collaboration"
                                         fill
                                         className="object-cover"
@@ -324,7 +324,7 @@ export default function AboutPage() {
                                     whileHover={{ scale: 1.05, rotate: -2 }}
                                 >
                                     <Image
-                                        src="/about2.jpg"
+                                        src="/yes.png"
                                         alt="Office workspace"
                                         fill
                                         className="object-cover"
@@ -476,7 +476,7 @@ export default function AboutPage() {
                             transition={{ duration: 1, ease: "easeOut" }}
                             viewport={{ once: true, amount: 0.3 }}
                             whileHover={{ scale: 1.02 }}
-                            className="relative h-96 rounded-2xl overflow-hidden shadow-2xl w-full"
+                            className="relative h-89 rounded-2xl overflow-hidden shadow-2xl w-full"
                         >
                             <Image
                                 src="/team work 3.png"
