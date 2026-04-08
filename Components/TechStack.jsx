@@ -46,6 +46,7 @@ export default function TechStack() {
             alt={tech.name}
             fill
             className="object-contain"
+            sizes="40px"
           />
         </div>
         <span className="text-base md:text-lg font-bold text-gray-800 whitespace-nowrap font-body">

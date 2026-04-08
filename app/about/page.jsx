@@ -23,6 +23,7 @@ export default function AboutPage() {
                         src="/tasks.png"
                         alt="Satisfaction Rate"
                         fill
+                        sizes="80px"
                         className="object-contain"
                     />
                 </div>
@@ -39,6 +40,7 @@ export default function AboutPage() {
                         src="/happy.png"
                         alt="Satisfaction Rate"
                         fill
+                        sizes="80px"
                         className="object-contain"
                     />
                 </div>
@@ -76,6 +78,7 @@ export default function AboutPage() {
                         src="/satisfaction.png"
                         alt="Satisfaction Rate"
                         fill
+                        sizes="80px"
                         className="object-contain"
                     />
                 </div>

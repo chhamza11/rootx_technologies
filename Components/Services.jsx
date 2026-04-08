@@ -52,7 +52,7 @@ export default function Services() {
         </div>
 
         {/* Services Cards */}
-        <div className="flex flex-col md:flex-row gap-4">
+        <div className="flex flex-col md:flex-row gap-4 md:items-stretch md:h-[320px]">
           {services.map((service, index) => (
             <div
               key={service.id}
@@ -77,18 +77,12 @@ export default function Services() {
                 />
               )}
               
-              <div
-                className={`relative p-6 md:p-8 h-full flex flex-col transition-all duration-500 ${
-                  activeService === index 
-                    ? "min-h-[300px] md:min-h-[400px]" 
-                    : "min-h-[120px] md:min-h-[400px]"
-                }`}
-              >
+              <div className="relative p-6 md:p-8 h-full flex flex-col">
                 {/* Number and Title - Top Section */}
                 <div className="flex-shrink-0">
                   <div className={`flex items-start gap-3 font-body ${activeService === index ? '' : 'justify-start'}`}>
                     <span
-                      className={`font-medium transition-colors duration-500 text-white ${
+                      className={`font-medium transition-all duration-500 text-white ${
                         activeService === index 
                           ? "text-5xl md:text-6xl lg:text-7xl" 
                           : "text-4xl md:text-6xl lg:text-7xl"
@@ -96,44 +90,32 @@ export default function Services() {
                     >
                       {service.id}
                     </span>
-                    {/* Title - Show for both active and inactive */}
+                    {/* Title */}
                     <h3
                       className={`font-semibold font-body mt-1 md:mt-2 transition-all duration-500 ${
                         activeService === index 
                           ? "text-2xl md:text-3xl lg:text-4xl opacity-100 block" 
                           : "text-xl opacity-100 block md:opacity-0 md:hidden"
                       }`}
-                      style={{ color: '#ffffff !important' }}
+                      style={{ color: '#ffffff' }}
                     >
                       {service.title}
                     </h3>
                   </div>
                 </div>
 
-                {/* Spacer - Pushes description to bottom */}
-                <div className="flex-grow"></div>
-
-                {/* Description - Always at bottom when active */}
+                {/* Description */}
                 <div
-                  className={`flex-shrink-0 mt-2 transition-all duration-700 ease-in-out overflow-hidden ${
+                  className={`flex-shrink-0 mt-2 transition-all duration-500 ease-in-out overflow-hidden ${
                     activeService === index
-                      ? "max-h-[500px] opacity-100 translate-y-0"
-                      : "max-h-0 opacity-0 translate-y-8"
+                      ? "max-h-[400px] opacity-100 translate-y-0"
+                      : "max-h-0 opacity-0 translate-y-4"
                   }`}
                 >
-                  <p className={`text-base md:text-lg lg:text-xl leading-relaxed font-normal transition-all duration-700 ease-in-out ${
-                    activeService === index ? "opacity-100 delay-300" : "opacity-0"
-                  }`}>
+                  <p className="text-base md:text-lg leading-relaxed font-normal mt-4">
                     {service.description}
                   </p>
                 </div>
-
-                {/* Indicator for closed cards
-                {activeService !== index && (
-                  <div className="flex-shrink-0 flex justify-start">
-                    <div className="w-12 md:w-16 h-1 md:h-1.5 rounded-full" style={{ backgroundColor: '#00346C' }}></div>
-                  </div>
-                )} */}
               </div>
             </div>
           ))}

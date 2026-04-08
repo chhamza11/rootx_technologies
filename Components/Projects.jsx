@@ -297,7 +297,7 @@ const ProjectCard = ({ project, index, progress, range, targetScale }) => {
             >
               <motion.div
                 style={{ scale: imageScale }}
-                className="w-full h-full"
+                className="relative w-full h-full"
               >
                 <Image
                   src={project.image}

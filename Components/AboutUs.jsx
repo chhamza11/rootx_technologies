@@ -2,6 +2,7 @@
 import { useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { motion } from "framer-motion";
 import { FaArrowRight } from "react-icons/fa";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -290,16 +291,16 @@ export default function AboutUs() {
                         {/* CTA Button */}
                         <div ref={buttonRef} className="mt-8">
                             <Link href="/about">
-                                <button
-                                    className="group relative text-white px-8 py-4 rounded-full text-base font-semibold transform transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105 active:scale-95 overflow-hidden inline-flex items-center gap-3"
-                                    style={{
-                                        background: "linear-gradient(to right, #00346C, #002a57)",
-                                    }}
+                                <motion.button
+                                    className="group relative text-white px-8 py-4 rounded-full text-base cursor-pointer font-semibold shadow-lg hover:shadow-xl inline-flex items-center gap-3 font-body"
+                                    style={{ backgroundColor: '#00346C' }}
+                                    whileHover={{ scale: 1.05 }}
+                                    whileTap={{ scale: 0.95 }}
+                                    transition={{ duration: 0.3 }}
                                 >
-                                    <span className="relative z-10">Learn More Now</span>
-                                    <FaArrowRight className="w-5 h-5 relative z-10 group-hover:translate-x-2 transition-transform duration-300" />
-                                    <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-700"></span>
-                                </button>
+                                    <span>Learn More Now</span>
+                                    <FaArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform duration-300" />
+                                </motion.button>
                             </Link>
                         </div>
                     </div>

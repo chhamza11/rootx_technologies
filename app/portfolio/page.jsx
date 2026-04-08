@@ -328,6 +328,7 @@ export default function PortfolioPage() {
                                                 src="/analysis-1.png"
                                                 alt="Satisfaction Rate"
                                                 fill
+                                                sizes="60px"
                                                 className="object-contain"
                                             />
                                         </div>
@@ -342,6 +343,7 @@ export default function PortfolioPage() {
                                                 src="/ui-design.png"
                                                 alt="Satisfaction Rate"
                                                 fill
+                                                sizes="60px"
                                                 className="object-contain"
                                             />
                                         </div>
@@ -356,6 +358,7 @@ export default function PortfolioPage() {
                                                 src="/pro.png"
                                                 alt="Satisfaction Rate"
                                                 fill
+                                                sizes="60px"
                                                 className="object-contain"
                                             />
                                         </div>
@@ -370,6 +373,7 @@ export default function PortfolioPage() {
                                                 src="/QA.png"
                                                 alt="Satisfaction Rate"
                                                 fill
+                                                sizes="60px"
                                                 className="object-contain"
                                             />
                                         </div>
@@ -384,6 +388,7 @@ export default function PortfolioPage() {
                                                 src="/dep.png"
                                                 alt="Satisfaction Rate"
                                                 fill
+                                                sizes="60px"
                                                 className="object-contain"
                                             />
                                         </div>

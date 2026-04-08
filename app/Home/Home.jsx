@@ -12,7 +12,7 @@ import ContactUs from "@/Components/ContactUs";
 export default function Home() {
   return (
     <>
-      <section id="home" className="relative min-h-screen flex items-center justify-center py-20 px-4 sm:px-6 lg:px-8 bg-white overflow-hidden">
+      <section id="home" className="relative min-h-screen flex items-center justify-center py-12 sm:py-20 px-4 sm:px-6 lg:px-8 bg-white overflow-hidden">
         {/* Background Image Pattern */}
         <div 
           className="absolute inset-0 opacity-[0.03]"
@@ -57,7 +57,7 @@ export default function Home() {
 
             {/* CTA Buttons */}
             <motion.div 
-              className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 mb-16"
+              className="flex flex-row items-center justify-center gap-3 sm:gap-6 mb-10 sm:mb-16"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
@@ -68,7 +68,7 @@ export default function Home() {
               >
                 <Link
                   href="/Contact"
-                  className="w-full sm:w-auto text-white px-8 py-3.5 rounded-full font-semibold transition-all duration-300 text-base sm:text-lg shadow-lg hover:shadow-xl font-body inline-block"
+                  className="w-38 sm:w-48 text-center text-white px-6 sm:px-8 py-3 sm:py-3.5 rounded-full font-semibold transition-all duration-300 text-sm sm:text-lg shadow-lg hover:shadow-xl font-body inline-block"
                   style={{ backgroundColor: '#00346C' }}
                 >
                   Get Started
@@ -80,7 +80,7 @@ export default function Home() {
               >
                 <Link
                   href="/portfolio"
-                  className="w-full sm:w-auto bg-white text-black px-8 py-3.5 rounded-full font-semibold border-2 border-black transition-all duration-300 text-base sm:text-lg shadow-md hover:shadow-lg font-body inline-block"
+                  className="w-38 sm:w-48 text-center bg-white text-black px-6 sm:px-8 py-3 sm:py-3.5 rounded-full font-semibold border-2 border-black transition-all duration-300 text-sm sm:text-lg shadow-md hover:shadow-lg font-body inline-block"
                   style={{ backgroundColor: '#ffffff' }}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.backgroundColor = '#00346C';
@@ -140,7 +140,7 @@ export default function Home() {
         </motion.div>
 
         {/* Mobile Download PDF Button */}
-        <motion.div 
+        {/* <motion.div 
           className="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-10 md:hidden"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -176,7 +176,7 @@ export default function Home() {
               Download PDF
             </Link>
           </motion.div>
-        </motion.div>
+        </motion.div> */}
       </section>
 
       {/* About Us Section */}
