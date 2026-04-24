@@ -63,7 +63,7 @@ export default function PortfolioPage() {
             category: "Transportation",
             description: "Eco-friendly ride-sharing platform promoting sustainable transportation and reducing carbon footprint.",
             image: "/EcoRide.png",
-            link: "https://play.google.com/store/apps/details?id=com.mightybell.ecomondemand",
+            link: "https://play.google.com/store/apps/details?id=com.flutterdev.ourjourney",
             isExternal: true,
             
         },
