@@ -34,9 +34,9 @@ export default function Loading() {
                     ></div>
 
                     {/* Logo */}
-                    <div className="relative w-14 h-14 sm:w-18 sm:h-18">
+                    <div className="relative w-14 h-14 sm:w-20 sm:h-20">
                         <Image
-                            src="/logo-3.png"
+                            src="/New Logo.png"
                             alt="RootX Technologies"
                             fill
                             className="object-contain"

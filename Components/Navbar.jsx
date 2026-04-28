@@ -31,11 +31,11 @@ export default function Navbar() {
           {/* Logo */}
           <Link href="/" className="flex-shrink-0 z-10 flex items-center gap-1">
             <Image
-              src="/logo1.png"
+              src="/New Logo.png"
               alt="RootX Technologies"
-              width={100}
-              height={100}
-              className="h-44 w-44 md:h-55 md:w-55"
+              width={170}
+              height={50}
+              className="h-9 w-auto"
               priority
             />
             {/* <div className="flex flex-col leading-none">
