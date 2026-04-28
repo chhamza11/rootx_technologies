@@ -80,14 +80,14 @@ export default function Footer() {
           </div>
 
           {/* Column 2 - Quick Links */}
-          <div className="flex flex-col  gap-4 mx-25">
-            <h3 className="text-white" style={{ fontFamily: 'Poppins, sans-serif', fontWeight: 600, fontSize: '24px', lineHeight: '22.4px', letterSpacing: '0px' }}>Quick Links</h3>
+          <div className="flex flex-col  gap-4 md:mx-25">
+            <h3 className="text-white text-left" style={{ fontFamily: 'Poppins, sans-serif', fontWeight: 600, fontSize: '24px', lineHeight: '22.4px', letterSpacing: '0px' }}>Quick Links</h3>
             <nav className="flex flex-col gap-3 text-center items-start">
               {[
                 { label: "Home", href: "/" },
-                { label: "About Us", href: "/about" },
+                { label: "About", href: "/about" },
                 { label: "Portfolio", href: "/portfolio" },
-                { label: "Contact Us", href: "/contact" },
+                { label: "Contact", href: "/contact" },
               ].map((link) => (
                 <Link
                   key={link.label}
@@ -116,7 +116,7 @@ export default function Footer() {
               />
               <button
                 type="submit"
-                className="flex-shrink-0 px-5 py-2.5 bg-white text-black rounded-full text-sm font-semibold cursor-pointer font-body  transition-all duration-300 hover:scale-105"
+                className="flex-shrink-0 px-5 py-2.5 bg-white text-black rounded-full text- font-semibold cursor-pointer font-body  transition-all duration-300 hover:scale-105"
               >
                 Subscribe
               </button>
@@ -173,7 +173,7 @@ export default function Footer() {
           <p className="text-white text-md font-body">
             © 2026 RootX Technologies. All rights reserved.
           </p>
-          <div className="flex gap-6">
+          <div className="flex gap-4 sm:gap-6 justify-start">
             <Link href="/terms" className="text-white hover:text-white text-md font-semibold font-body transition-colors duration-300 hover:underline">
               Terms & Condition
             </Link>
