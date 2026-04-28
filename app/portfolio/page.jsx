@@ -20,8 +20,7 @@ export default function PortfolioPage() {
             category: "Financial Platform",
             description: "A comprehensive financial management platform offering advanced analytics and portfolio tracking for modern businesses.",
             image: "/Aconomy.webp",
-            link: "/projects/1",
-
+            link: "#",
         },
         {
             id: 2,
@@ -29,7 +28,7 @@ export default function PortfolioPage() {
             category: "Productivity Suite",
             description: "An innovative productivity solution designed to enhance focus and streamline workflow management for teams.",
             image: "/Focusmonk (1).webp",
-            link: "/projects/2"
+            link: "#"
         },
         {
             id: 3,
@@ -37,7 +36,7 @@ export default function PortfolioPage() {
             category: "E-commerce",
             description: "A robust e-commerce platform supporting seamless online transactions and exceptional customer experience.",
             image: "/Salharo.webp",
-            link: "/projects/3"
+            link: "#"
         },
         {
             id: 4,
@@ -45,7 +44,7 @@ export default function PortfolioPage() {
             category: "HR Management",
             description: "Complete human resource management system with employee tracking and payroll management features.",
             image: "/Wise1HRM.webp",
-            link: "/projects/4"
+            link: "#"
         },
         {
             id: 5,

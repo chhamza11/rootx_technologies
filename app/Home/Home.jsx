@@ -112,7 +112,7 @@ export default function Home() {
             whileTap={{ scale: 0.95 }}
           >
             <Link
-              href="/download-pdf"
+              href="#"
               className="flex items-center gap-2 text-white px-6 py-3 rounded-full font-semibold transition-all duration-300 font-body"
               style={{ 
                 backgroundColor: '#00346C',
@@ -151,7 +151,7 @@ export default function Home() {
             whileTap={{ scale: 0.95 }}
           >
             <Link
-              href="/download-pdf"
+              href="#"
               className="flex items-center gap-2 text-white px-5 py-2.5 rounded-full font-bold transition-all duration-300 text-sm font-body"
               style={{ 
                 backgroundColor: '#00346C',
