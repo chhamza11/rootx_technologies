@@ -87,7 +87,7 @@ export default function Footer() {
                 { label: "Home", href: "/" },
                 { label: "About", href: "/about" },
                 { label: "Portfolio", href: "/portfolio" },
-                { label: "Contact", href: "/contact" },
+                { label: "Contact Us", href: "/Contact" },
               ].map((link) => (
                 <Link
                   key={link.label}
@@ -174,10 +174,10 @@ export default function Footer() {
             © 2026 RootX Technologies. All rights reserved.
           </p>
           <div className="flex gap-4 sm:gap-6 justify-start">
-            <Link href="/terms" className="text-white hover:text-white text-md font-semibold font-body transition-colors duration-300 hover:underline">
+            <Link href="#" className="text-white text-xs sm:text-sm font-semibold font-body hover:underline transition-colors duration-300">
               Terms & Condition
             </Link>
-            <Link href="/privacy" className="text-white hover:text-white text-md font-semibold font-body transition-colors duration-300 hover:underline">
+            <Link href="#" className="text-white text-xs sm:text-sm font-semibold font-body hover:underline transition-colors duration-300">
               Privacy Policy
             </Link>
           </div>
