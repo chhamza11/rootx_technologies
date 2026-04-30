@@ -5,6 +5,8 @@ import { motion } from "framer-motion";
 import { useState, useEffect, useRef } from "react";
 import { FaRocket, FaUsers, FaLightbulb, FaAward } from "react-icons/fa";
 import TeamMembers from "@/Components/TeamMembers";
+import CtaSection from "@/Components/CtaSection";
+import HeroBackground from "@/Components/HeroBackground";
 
 export default function AboutPage() {
     const [counters, setCounters] = useState([0, 0, 0, 0]);
@@ -169,16 +171,10 @@ export default function AboutPage() {
         <div className="min-h-screen bg-white overflow-x-hidden">
             {/* Hero Section */}
             <section className="relative min-h-[60vh] flex items-center mb-2 justify-center py-20 px-4 sm:px-6 lg:px-8 bg-white overflow-hidden">
+                {/* Background Effects */}
+                <HeroBackground />
                 {/* Background Pattern */}
-                <div
-                    className="absolute inset-0 opacity-[0.03]"
-                    style={{
-                        backgroundImage: `url('/bg.png')`,
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'center',
-                        backgroundRepeat: 'no-repeat'
-                    }}
-                />
+                
 
                 <div className="relative max-w-5xl mx-auto text-center z-10">
                     <motion.div
@@ -217,62 +213,6 @@ export default function AboutPage() {
                             We are a passionate team of developers, designers, and innovators dedicated to transforming ideas into powerful digital solutions.
                         </motion.p>
                     </motion.div>
-                </div>
-            </section>
-
-            {/* Stats Section */}
-            <section ref={statsRef} className="relative py-16 sm:py-20 md:py-24 px-4 sm:px-6 lg:px-8 bg-white overflow-hidden">
-                {/* Background Pattern */}
-                
-
-                {/* L-Shape Border Frame - Top Left and Bottom Right */}
-                <div
-                    className="absolute inset-0 border-4 pointer-events-none"
-                    style={{
-                        borderColor: "#00346C",
-                        clipPath: "polygon(0 0, 20% 0, 20% 4px, 4px 4px, 4px 20%, 0 20%, 0 100%, 100% 100%, 100% 80%, calc(100% - 4px) 80%, calc(100% - 4px) calc(100% - 4px), 80% calc(100% - 4px), 80% 100%, 0 100%)",
-                    }}
-                />
-
-                <div className="relative z-10 max-w-7xl mx-auto">
-                    <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
-                        {stats.map((stat, index) => (
-                            <motion.div
-                                key={index}
-                                initial={{ opacity: 0, y: 50, scale: 0.8 }}
-                                whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                                transition={{ 
-                                    duration: 0.6, 
-                                    delay: index * 0.15,
-                                    ease: "easeOut"
-                                }}
-                                viewport={{ once: true, amount: 0.3 }}
-                                whileHover={{ scale: 1.05 }}
-                                className="text-center"
-                            >
-                                {/* Icon without background */}
-                                <motion.div 
-                                    className="inline-flex items-center justify-center mb-4 sm:mb-6"
-                                    initial={{ rotate: -10, opacity: 0 }}
-                                    whileInView={{ rotate: 0, opacity: 1 }}
-                                    transition={{ duration: 0.5, delay: index * 0.15 + 0.2 }}
-                                    viewport={{ once: true }}
-                                >
-                                    {stat.icon}
-                                </motion.div>
-
-                                {/* Number */}
-                                <h3 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-black mb-2 font-heading">
-                                    {counters[index]}{stat.suffix}
-                                </h3>
-
-                                {/* Label */}
-                                <p className="text-black text-sm sm:text-base font-body">
-                                    {stat.label}
-                                </p>
-                            </motion.div>
-                        ))}
-                    </div>
                 </div>
             </section>
 
@@ -491,61 +431,7 @@ export default function AboutPage() {
             </section>
 
             {/* CTA Section */}
-            <section className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8" >
-                <div className="max-w-4xl mx-auto text-center">
-                    <motion.div
-                        initial={{ opacity: 0, y: 50, scale: 0.9 }}
-                        whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                        transition={{ duration: 0.8, ease: "easeOut" }}
-                        viewport={{ once: true, amount: 0.5 }}
-                    >
-                        <motion.h2 
-                            className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-6 font-heading"
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.6, delay: 0.2 }}
-                            viewport={{ once: true }}
-                        >
-                            Ready to Start Your Project?
-                        </motion.h2>
-                        <motion.p 
-                            className="text-black text-base sm:text-lg mb-8 font-heading"
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.6, delay: 0.3 }}
-                            viewport={{ once: true }}
-                        >
-                            Let's work together to bring your ideas to life with cutting-edge technology and expert craftsmanship.
-                        </motion.p>
-                        <motion.div
-                            initial={{ opacity: 0, scale: 0.8 }}
-                            whileInView={{ opacity: 1, scale: 1 }}
-                            transition={{ duration: 0.6, delay: 0.4 }}
-                            viewport={{ once: true }}
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                        >
-                            <Link
-                                href="/Contact"
-                                className="w-full sm:w-auto bg-white text-black px-8 py-3.5 rounded-full font-semibold border-2 border-black transition-all duration-300 text-base sm:text-lg shadow-md hover:shadow-lg transform font-body inline-block"
-                                style={{ backgroundColor: '#ffffff' }}
-                                onMouseEnter={(e) => {
-                                    e.currentTarget.style.backgroundColor = '#00346C';
-                                    e.currentTarget.style.color = '#ffffff';
-                                    e.currentTarget.style.borderColor = '#00346C';
-                                }}
-                                onMouseLeave={(e) => {
-                                    e.currentTarget.style.backgroundColor = '#ffffff';
-                                    e.currentTarget.style.color = '#000000';
-                                    e.currentTarget.style.borderColor = '#000000';
-                                }}
-                            >
-                                Get In Touch
-                            </Link>
-                        </motion.div>
-                    </motion.div>
-                </div>
-            </section>
+            <CtaSection />
         </div>
     );
 }

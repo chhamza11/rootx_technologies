@@ -1,381 +1,392 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import { ReactLenis } from 'lenis/react';
-import { useTransform, motion, useScroll } from 'framer-motion';
-import { useRef } from 'react';
+import { motion, AnimatePresence, useMotionValue, useSpring } from "framer-motion";
+import { useRef, useState, useEffect } from "react";
 
-export default function Projects() {
-  const container = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: container,
-    offset: ['start start', 'end end'],
-  });
+const NAVY = "#00346C";
 
-  const projects = [
-    {
-      id: 1,
-      title: "Aconomy",
-      category: "Financial Platform",
-      description: "A sophisticated financial management platform offering advanced analytics and portfolio tracking for modern businesses.",
-      image: "/Aconomy.webp",
-      gradient: "from-blue-900 to-cyan-600",
-      color: "#00346C"
-    },
-    {
-      id: 2,
-      title: "FocusMonk",
-      category: "Productivity Suite",
-      description: "An innovative productivity solution designed to enhance focus and time management for teams.",
-      image: "/Focusmonk (1).webp",
-      gradient: "from-blue-800 to-teal-600",
-      color: "#00346C"
-    },
-    {
-      id: 3,
-      title: "Salharo",
-      category: "E-commerce Platform",
-      description: "A full-featured e-commerce platform providing seamless shopping experiences and exceptional customer experience.",
-      image: "/Salharo.webp",
-      gradient: "from-blue-900 to-cyan-700",
-      color: "#00346C"
-    },
-    {
-      id: 4,
-      title: "Wise1HRM",
-      category: "HR Management",
-      description: "Complete human resource management system with employee tracking and payroll management features.",
-      image: "/Wise1HRM.webp",
-      gradient: "from-blue-900 to-cyan-600",
-      color: "#00346C"
-    },
-    {
-      id: 5,
-      title: "Appointzme",
-      category: "Appointment Booking",
-      description: "Smart appointment scheduling platform that simplifies booking management and enhances customer engagement.",
-      image: "/with name.png",
-      gradient: "from-blue-800 to-teal-600",
-      color: "#00346C"
-    },
-  ];
+// ── Animated Counter ──────────────────────────────────────────────────────────
+function Counter({ target, suffix }) {
+  const [val, setVal]   = useState(0);
+  const ref             = useRef(null);
+  const done            = useRef(false);
 
+  useEffect(() => {
+    const obs = new IntersectionObserver(([e]) => {
+      if (e.isIntersecting && !done.current) {
+        done.current = true;
+        let n = 0;
+        const step = Math.ceil(target / 60);
+        const id = setInterval(() => {
+          n = Math.min(n + step, target);
+          setVal(n);
+          if (n >= target) clearInterval(id);
+        }, 25);
+      }
+    }, { threshold: 0.6 });
+    if (ref.current) obs.observe(ref.current);
+    return () => obs.disconnect();
+  }, [target]);
+
+  return <span ref={ref}>{val}{suffix}</span>;
+}
+
+// ── Hover Image that follows cursor vertically ────────────────────────────────
+function FloatingImage({ src, alt, visible }) {
   return (
-    <ReactLenis root options={{ lerp: 0.1, duration: 1.5, smoothWheel: true }}>
-      <main ref={container}>
-        <section id="portfolio" className="relative py-12 sm:py-16 md:py-24 px-4 sm:px-6 lg:px-8 bg-white">
-          <div className="max-w-7xl mx-auto">
-            {/* Header */}
-            <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 sm:mb-12 md:mb-16 gap-4">
-              <div className="w-full md:w-auto">
-                {/* Our Portfolio Badge */}
-                <motion.div 
-                  className="inline-block mb-4 sm:mb-6"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6 }}
-                  viewport={{ once: true }}
-                >
-                  <span className="px-4 sm:px-6 py-2 sm:py-2.5 border-1 border-black rounded-full text-xs sm:text-sm font-semibold text-black font-body transition-all duration-300">
-                    Our Portfolio
-                  </span>
-                </motion.div>
-
-                {/* Main Heading */}
-                <motion.h2 
-                  className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-black font-heading leading-tight"
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.2 }}
-                  viewport={{ once: true }}
-                >
-                  Projects We Completed
-                </motion.h2>
-              </div>
-
-              {/* View All Projects Button - Desktop Only */}
-              <motion.div 
-                className="hidden md:block w-auto"
-                initial={{ opacity: 0, x: 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: 0.4 }}
-                viewport={{ once: true }}
-              >
-                <Link
-                  href="/portfolio"
-                  className="inline-flex items-center justify-center gap-2 bg-blue-950 text-white px-5 sm:px-6 py-2.5 sm:py-3 rounded-full font-semibold font-body  transition-all duration-300 shadow-lg hover:shadow-2xl transform hover:scale-105 text-sm sm:text-base"
-                >
-                  View All Projects
-                  <svg 
-                    className="w-4 h-4 transition-transform group-hover:translate-x-1" 
-                    fill="none" 
-                    stroke="currentColor" 
-                    viewBox="0 0 24 24"
-                  >
-                    <path 
-                      strokeLinecap="round" 
-                      strokeLinejoin="round" 
-                      strokeWidth={2} 
-                      d="M9 5l7 7-7 7" 
-                    />
-                  </svg>
-                </Link>
-              </motion.div>
-            </div>
-
-            {/* Projects Cards with Advanced Sticky Motion Effect */}
-            <div className="space-y-12 sm:space-y-16 md:space-y-16 mb-24 sm:mb-32 md:mb-0">
-              {projects.map((project, index) => {
-                const targetScale = 1 - (projects.length - index) * 0.05;
-                return (
-                  <ProjectCard
-                    key={project.id}
-                    project={project}
-                    index={index}
-                    progress={scrollYProgress}
-                    range={[index * 0.25, 1]}
-                    targetScale={targetScale}
-                  />
-                );
-              })}
-            </div>
-
-            {/* View All Projects Button - Mobile Only (After Cards) */}
-            <motion.div 
-              className="block md:hidden mt-20 sm:mt-24 pb-8"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-            >
-              <Link
-                href="/portfolio"
-                className="inline-flex items-center justify-center gap-2 bg-blue-900 text-white px-5 sm:px-6 py-2.5 sm:py-3 rounded-full font-semibold font-body hover:bg-blue-800 transition-all duration-300 shadow-[0_0_20px_rgba(30,58,138,0.3)] hover:shadow-[0_0_30px_rgba(30,58,138,0.5)] transform hover:scale-105 text-sm sm:text-base w-full"
-              >
-                View All Projects
-                <svg 
-                  className="w-4 h-4 transition-transform group-hover:translate-x-1" 
-                  fill="none" 
-                  stroke="currentColor" 
-                  viewBox="0 0 24 24"
-                >
-                  <path 
-                    strokeLinecap="round" 
-                    strokeLinejoin="round" 
-                    strokeWidth={2} 
-                    d="M9 5l7 7-7 7" 
-                  />
-                </svg>
-              </Link>
-            </motion.div>
-          </div>
-        </section>
-      </main>
-    </ReactLenis>
+    <AnimatePresence>
+      {visible && (
+        <motion.div
+          className="absolute right-16 pointer-events-none z-20 rounded-2xl overflow-hidden shadow-2xl"
+          style={{ width: 280, height: 200 }}
+          initial={{ opacity: 0, x: 40, scale: 0.92 }}
+          animate={{ opacity: 1, x: 0, scale: 1 }}
+          exit={{ opacity: 0, x: 40, scale: 0.92 }}
+          transition={{ duration: 0.35, ease: [0.25, 0.1, 0.25, 1] }}
+        >
+          <Image
+            src={src}
+            alt={alt}
+            fill
+            className="object-contain bg-gray-50 p-2"
+            sizes="280px"
+          />
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 }
 
-// Advanced Project Card Component with Sticky Motion Effects
-const ProjectCard = ({ project, index, progress, range, targetScale }) => {
-  const container = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: container,
-    offset: ['start end', 'start start'],
-  });
+// ── Single Row ────────────────────────────────────────────────────────────────
+function ProjectRow({ project, index, isLast }) {
+  const [hovered, setHovered] = useState(false);
+  const rowRef = useRef(null);
 
-  const imageScale = useTransform(scrollYProgress, [0, 1], [1.2, 1]);
-  const scale = useTransform(progress, range, [1, targetScale]);
+  // Track cursor Y inside row for image vertical position
+  const mouseY = useMotionValue(0);
+  const smoothY = useSpring(mouseY, { stiffness: 200, damping: 25 });
+
+  const onMouseMove = (e) => {
+    const rect = rowRef.current?.getBoundingClientRect();
+    if (!rect) return;
+    mouseY.set(e.clientY - rect.top - 100); // center image on cursor
+  };
 
   return (
-    <div
-      ref={container}
-      className="h-screen flex items-center justify-center sticky top-0"
+    <motion.div
+      ref={rowRef}
+      className="relative"
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      // onMouseMove={onMouseMove}
+      initial={{ opacity: 0, y: 32 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.55, delay: index * 0.08, ease: "easeOut" }}
+      viewport={{ once: true, amount: 0.3 }}
     >
+      {/* Hover background highlight */}
       <motion.div
-        style={{
-          backgroundColor: project.color,
-          scale,
-          top: `calc(-5vh + ${index * 25}px)`,
-        }}
-        className="relative rounded-3xl overflow-hidden shadow-[0_10px_40px_rgba(0,0,0,0.2)] w-full max-w-7xl mx-4 origin-top will-change-transform"
-        initial={{ y: 50, opacity: 0 }}
-        whileInView={{ y: 0, opacity: 1 }}
-        transition={{ 
-          duration: 0.8, 
-          delay: index * 0.1,
-          ease: [0.25, 0.1, 0.25, 1]
-        }}
-        viewport={{ once: true, margin: "-100px" }}
-      >
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 p-5 sm:p-6 md:p-10 relative">
-          {/* Left Side - Title and Description */}
-          <motion.div 
-            className="flex flex-col justify-between text-white relative z-10"
-            initial={{ x: -50, opacity: 0 }}
-            whileInView={{ x: 0, opacity: 1 }}
-            transition={{ 
-              duration: 0.6, 
-              delay: 0.2,
-              ease: [0.25, 0.1, 0.25, 1]
-            }}
-            viewport={{ once: true, margin: "-50px" }}
-          >
-            {/* Title at Top */}
-            <div>
-              <motion.h3 
-                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold font-body leading-tight"
-                style={{ color: 'white' }}
-                initial={{ y: 20, opacity: 0 }}
-                whileInView={{ y: 0, opacity: 1 }}
-                transition={{ 
-                  duration: 0.5, 
-                  delay: 0.3,
-                  ease: [0.25, 0.1, 0.25, 1]
-                }}
-                viewport={{ once: true }}
-              >
-                {project.title}
-              </motion.h3>
-              
-              {/* Category Badge - Mobile Only (After Title) */}
-              <motion.div 
-                className="block lg:hidden mt-3"
-                initial={{ scale: 0.8, opacity: 0 }}
-                whileInView={{ scale: 1, opacity: 1 }}
-                transition={{ 
-                  duration: 0.4, 
-                  delay: 0.4,
-                  ease: [0.25, 0.1, 0.25, 1]
-                }}
-                viewport={{ once: true }}
-              >
-                <span className="inline-block px-3 sm:px-4 py-1.5 sm:py-2 bg-white/10 backdrop-blur/24 rounded-full text-xs sm:text-sm font-semibold font-body border border-white/20 shadow-lg">
-                  {project.category}
-                </span>
-              </motion.div>
-            </div>
+        className="absolute inset-0 rounded-xl pointer-events-none"
+        animate={{ opacity: hovered ? 1 : 0 }}
+        transition={{ duration: 0.25 }}
+        style={{ background: "rgba(0,52,108,0.04)" }}
+      />
 
-            {/* Description at Bottom */}
-            <motion.div 
-              className="mt-4 lg:mt-0"
-              initial={{ y: 15, opacity: 0 }}
-              whileInView={{ y: 0, opacity: 1 }}
-              transition={{ 
-                duration: 0.5, 
-                delay: 0.5,
-                ease: [0.25, 0.1, 0.25, 1]
-              }}
-              viewport={{ once: true }}
-            >
-              <p className="text-sm sm:text-base md:text-lg text-white font-body font-normal leading-relaxed opacity-90">
-                {project.description}
-              </p>
-            </motion.div>
-          </motion.div>
+      {/* Row content */}
+      <div className="relative flex flex-wrap items-center gap-3 sm:gap-6 lg:gap-8 py-5 sm:py-6 md:py-8 px-3 sm:px-4 md:px-6 cursor-pointer overflow-visible">
 
-          {/* Middle - Project Image */}
-          <motion.div 
-            className="flex items-center justify-center relative z-10"
-            initial={{ scale: 0.9, opacity: 0 }}
-            whileInView={{ scale: 1, opacity: 1 }}
-            transition={{ 
-              duration: 0.6, 
-              delay: 0.15,
-              ease: [0.25, 0.1, 0.25, 1]
+        {/* ── Number ── */}
+        <span
+          className="font-body font-bold flex-shrink-0 select-none hidden xs:inline sm:inline"
+          style={{
+            fontSize: "clamp(0.65rem, 1.2vw, 0.9rem)",
+            color:hovered ? NAVY : "#0a0a0a",
+            transition: "color 0.25s",
+            minWidth: "1.5rem",
+          }}
+        >
+          {project.number}
+        </span>
+
+        {/* ── Project Name + Description grouped ── */}
+        <div className="flex flex-col flex-1 min-w-0 gap-1">
+          <motion.h3
+            className="font-semibold font-body"
+            style={{
+              fontSize: "clamp(1.1rem, 3vw, 2.2rem)",
+              color: hovered ? NAVY : "#0a0a0a",
+              fontWeight: 500,
+              transition: "color 0.25s",
             }}
-            viewport={{ once: true, margin: "-50px" }}
+            animate={{ x: hovered ? 6 : 0 }}
+            transition={{ duration: 0.3 }}
           >
-            <div 
-              className={`relative w-full aspect-square rounded-3xl sm:rounded-[3rem] overflow-hidden shadow-[0_8px_32px_rgba(0,0,0,0.3)] ${
-                project.id === 1 ? "max-w-[280px] sm:max-w-[320px]" :
-                project.id === 2 ? "max-w-[310px] sm:max-w-[370px]" :
-                project.id === 3 ? "max-w-[340px] sm:max-w-[420px]" :
-                project.id === 4 ? "max-w-[370px] sm:max-w-[470px]" :
-                project.id === 5 ? "max-w-[400px] sm:max-w-[520px]" :
-                "max-w-xs sm:max-w-sm"
-              }`}
+            {project.title}
+          </motion.h3>
+
+          {/* ── Description ── */}
+          <p
+            className="font-body text-xs sm:text-sm md:text-base leading-relaxed"
+            style={{
+              color: hovered ? NAVY : "#0a0a0a",
+              transition: "color 0.3s",
+              maxWidth: "420px",
+            }}
+          >
+            {project.description}
+          </p>
+        </div>
+
+        {/* ── Arrow button ── */}
+        <motion.div
+          className="flex-shrink-0 ml-auto"
+          animate={{
+            scale: hovered ? 1.1 : 1,
+            rotate: hovered ? -45 : 0,
+          }}
+          transition={{ duration: 0.3, ease: "easeOut" }}
+        >
+          <div
+            className="w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center border-2 transition-all duration-300"
+            style={{
+              borderColor: hovered ? "transparent" : "#0a0a0a",
+              background: hovered ? NAVY : "transparent",
+            }}
+          >
+            <svg
+              className="w-4 h-4 sm:w-5 sm:h-5"
+              fill="none"
+              stroke={hovered ? "#fff" : NAVY}
+              viewBox="0 0 24 24"
             >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </div>
+        </motion.div>
+
+        {/* ── Hover image (desktop only) ── */}
+        <div className="hidden lg:block">
+          <AnimatePresence>
+            {hovered && (
               <motion.div
-                style={{ scale: imageScale }}
-                className="relative w-full h-full"
+                className="absolute pointer-events-none z-10 rounded-2xl overflow-hidden shadow-2xl"
+                style={{
+                  width: 200,
+                  height: 200,
+                  right: "170px",
+                  top: "-20px",
+                }}
+                initial={{ opacity: 0, y: 60, scale: 0.92 }}
+                animate={{ opacity: 1, y: 0,  scale: 1    }}
+                exit={{   opacity: 0, y: 20, scale: 0.50  }}
+                transition={{ duration: 0.60, ease: [0.16, 1, 0.3, 1] }}
               >
                 <Image
                   src={project.image}
                   alt={project.title}
                   fill
                   className="object-cover"
-                  sizes="(max-width: 640px) 300px, (max-width: 1024px) 400px, 500px"
+                  sizes="240px"
                 />
               </motion.div>
-            </div>
-          </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+      </div>
 
-          {/* Right Side - Category and Button */}
-          <motion.div 
-            className="flex flex-col justify-between text-white relative z-10"
-            initial={{ x: 50, opacity: 0 }}
-            whileInView={{ x: 0, opacity: 1 }}
-            transition={{ 
-              duration: 0.6, 
-              delay: 0.2,
-              ease: [0.25, 0.1, 0.25, 1]
-            }}
-            viewport={{ once: true, margin: "-50px" }}
-          >
-            {/* Category at Top - Desktop Only */}
-            <motion.div 
-              className="hidden lg:flex justify-end"
-              initial={{ scale: 0.8, opacity: 0 }}
-              whileInView={{ scale: 1, opacity: 1 }}
-              transition={{ 
-                duration: 0.4, 
-                delay: 0.4,
-                ease: [0.25, 0.1, 0.25, 1]
-              }}
+      {/* Divider */}
+      {!isLast && (
+        <motion.div
+          className="h-px mx-4 sm:mx-6"
+          style={{ background: "rgba(0,52,108,0.08)" }}
+          animate={{ scaleX: hovered ? 1 : 1, opacity: hovered ? 0.5 : 1 }}
+        />
+      )}
+    </motion.div>
+  );
+}
+
+// ── Main Component ────────────────────────────────────────────────────────────
+export default function Projects() {
+  const projects = [
+    {
+      id: 1, number: "01",
+      title: "Aconomy",
+      category: "Financial Platform",
+      description: "Advanced analytics & real-time portfolio tracking for modern businesses.",
+      image: "/Aconomy.webp",
+      link: "/portfolio",
+    },
+    {
+      id: 2, number: "02",
+      title: "FocusMonk",
+      category: "Productivity Suite",
+      description: "Enhance focus, streamline workflows and boost team performance.",
+      image: "/Focusmonk (1).webp",
+      link: "/portfolio",
+    },
+    {
+      id: 3, number: "03",
+      title: "Salharo",
+      category: "E-commerce Platform",
+      description: "Seamless shopping, smart inventory and exceptional customer UX.",
+      image: "/Salharo.webp",
+      link: "/portfolio",
+    },
+    {
+      id: 4, number: "04",
+      title: "Wise1HRM",
+      category: "HR Management",
+      description: "Employee tracking, payroll automation and performance analytics.",
+      image: "/Wise1HRM.webp",
+      link: "/portfolio",
+    },
+    {
+      id: 5, number: "05",
+      title: "Appointzme",
+      category: "Appointment Booking",
+      description: "Smart scheduling that reduces no-shows and enhances engagement.",
+      image: "/with_name_Final.png",
+      link: "/portfolio",
+    },
+  ];
+
+  return (
+    <section id="portfolio" className="relative py-16 sm:py-20 md:py-28 bg-white overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        {/* ── Header ── */}
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 md:mb-16 gap-6">
+          <div>
+            <motion.div
+              className="inline-block mb-4"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
               viewport={{ once: true }}
             >
-              <span className="inline-block px-3 sm:px-4 py-1.5 sm:py-2 bg-white/10 backdrop-blur/24 rounded-full text-xs sm:text-sm font-semibold font-body border border-white/20 shadow-lg">
-                {project.category}
+              <span className="px-5 py-2 border border-black rounded-full text-xs sm:text-sm font-semibold text-black font-body">
+                Our Portfolio
               </span>
             </motion.div>
 
-            {/* View Project Details Button at Bottom */}
-            <motion.div 
-              className="mt-4 lg:mt-0 flex justify-start lg:justify-end"
-              initial={{ y: 15, opacity: 0 }}
-              whileInView={{ y: 0, opacity: 1 }}
-              transition={{ 
-                duration: 0.5, 
-                delay: 0.5,
-                ease: [0.25, 0.1, 0.25, 1]
-              }}
+            <motion.h2
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-black font-heading leading-tight"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.1 }}
               viewport={{ once: true }}
             >
-              <Link
-                href={project.link || '#'}
-                target={project.isExternal ? "_blank" : undefined}
-                rel={project.isExternal ? "noopener noreferrer" : undefined}
-                className="inline-flex items-center justify-center gap-2 bg-white text-black font-body px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 md:py-3 rounded-full font-semibold hover:bg-gray-100 transition-all duration-300 shadow-[0_4px_20px_rgba(255,255,255,0.3)] hover:shadow-[0_6px_30px_rgba(255,255,255,0.5)] transform hover:scale-105 text-xs sm:text-sm md:text-base group/btn"
-              >
-                View Project Details
-                <svg 
-                  className="w-3 h-3 sm:w-4 sm:h-4 transition-transform group-hover/btn:translate-x-1" 
-                  fill="none" 
-                  stroke="currentColor" 
-                  viewBox="0 0 24 24"
-                >
-                  <path 
-                    strokeLinecap="round" 
-                    strokeLinejoin="round" 
-                    strokeWidth={2} 
-                    d="M9 5l7 7-7 7" 
-                  />
-                </svg>
-              </Link>
-            </motion.div>
+              Projects We Completed
+             
+            </motion.h2>
+
+            <motion.p
+              className="mt-3 text-gray-900 font-body text-base sm:text-lg max-w-lg"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              viewport={{ once: true }}
+            >
+              Hand-picked work showcasing our expertise across web, mobile, and enterprise solutions.
+            </motion.p>
+          </div>
+
+          <motion.div
+            className="hidden md:block"
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            viewport={{ once: true }}
+          >
+            <Link
+              href="/portfolio"
+              className="inline-flex items-center gap-2 text-white px-6 py-3 rounded-full font-semibold font-body text-sm transition-all duration-300 hover:scale-105 transform"
+              style={{ backgroundColor: NAVY, boxShadow: "0 4px 20px rgba(0,52,108,0.3)" }}
+              onMouseEnter={(e) => (e.currentTarget.style.boxShadow = "0 6px 28px rgba(0,52,108,0.5)")}
+              onMouseLeave={(e) => (e.currentTarget.style.boxShadow = "0 4px 20px rgba(0,52,108,0.3)")}
+            >
+              View All Projects
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </Link>
           </motion.div>
         </div>
-      </motion.div>
-    </div>
+
+        {/* ── Top border ── */}
+        <motion.div
+          className="h-px mb-2"
+          style={{ background: "rgba(0,52,108,0.12)" }}
+          initial={{ scaleX: 0 }}
+          whileInView={{ scaleX: 1 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          viewport={{ once: true }}
+        />
+
+        {/* ── Project Rows ── */}
+        <div>
+          {projects.map((project, index) => (
+            <Link key={project.id} href={project.link || "/portfolio"}>
+              <ProjectRow
+                project={project}
+                index={index}
+                isLast={index === projects.length - 1}
+              />
+            </Link>
+          ))}
+        </div>
+
+        {/* ── Bottom border ── */}
+        <div className="h-px" style={{ background: "rgba(0,52,108,0.12)" }} />
+
+        {/* ── Stats ── */}
+        <motion.div
+          className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-px mt-16 rounded-2xl overflow-hidden"
+          style={{ background: "rgba(0,52,108,0.08)" }}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.2 }}
+          viewport={{ once: true }}
+        >
+          {[
+            { target: 50,  suffix: "+", label: "Projects Delivered"  },
+            { target: 30,  suffix: "+", label: "Happy Clients"        },
+            { target: 5,   suffix: "+", label: "Years Experience"     },
+            { target: 100, suffix: "%", label: "Client Satisfaction"  },
+          ].map((s, i) => (
+            <motion.div
+              key={i}
+              className="flex flex-col items-center justify-center py-8 px-4 bg-white"
+              whileHover={{ background: "rgba(0,52,108,0.03)" }}
+              transition={{ duration: 0.2 }}
+            >
+              <span
+                className="font-bold font-body leading-none mb-1"
+                style={{ fontSize: "clamp(1.8rem, 4vw, 2.5rem)", color: NAVY }}
+              >
+                <Counter target={s.target} suffix={s.suffix} />
+              </span>
+              <span className="text-xs sm:text-sm text-gray-500 font-body text-center">{s.label}</span>
+            </motion.div>
+          ))}
+        </motion.div>
+
+        {/* Mobile CTA */}
+        <div className="block md:hidden mt-10">
+          <Link
+            href="/portfolio"
+            className="flex items-center justify-center gap-2 text-white px-6 py-3.5 rounded-full font-semibold font-body w-full text-sm"
+            style={{ backgroundColor: NAVY }}
+          >
+            View All Projects
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </Link>
+        </div>
+      </div>
+    </section>
   );
-};
+}

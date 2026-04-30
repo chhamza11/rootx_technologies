@@ -9,7 +9,6 @@ export default function TeamMembers() {
     const teamMembers = [
         { name: "Muhammad Hamza", image: "/team/hamza.png", role: "Project Manager" },
         { name: "Matloob Ali", image: "/team/matloob Ali.png", role: "Head Manager" },
-        { name: "Sidra Younas", image: "/team/sidra.png", role: "HR Manager" },
         { name: "Rehan Munsif", image: "/team/rehan-2.png", role: "Sr.ASP.NET Core/MVC Developer" },
         { name: "Ayaz Aslam", image: "/team/ayaz-2.png", role: "Flutter Developer" },
         { name: "Haris Zeeshan", image: "/team/haris-2.png", role: "Web Developer" },

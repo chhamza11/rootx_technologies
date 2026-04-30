@@ -3,6 +3,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import TechStack from "@/Components/TechStack";
+import CtaSection from "@/Components/CtaSection";
+import HeroBackground from "@/Components/HeroBackground";
 
 export default function ServicesPage() {
     const services = [
@@ -123,16 +125,10 @@ export default function ServicesPage() {
         <div className="min-h-screen bg-white overflow-x-hidden">
             {/* Hero Section */}
             <section className="relative min-h-[60vh] flex items-center mb-2 justify-center py-20 px-4 sm:px-6 lg:px-8 bg-white overflow-hidden">
+                {/* Background Effects */}
+                <HeroBackground />
                 {/* Background Pattern */}
-                <div
-                    className="absolute inset-0 opacity-[0.03]"
-                    style={{
-                        backgroundImage: `url('/bg.png')`,
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'center',
-                        backgroundRepeat: 'no-repeat'
-                    }}
-                />
+               
 
                 <div className="relative max-w-5xl mx-auto text-center z-10">
                     <motion.div
@@ -333,7 +329,7 @@ export default function ServicesPage() {
                         </motion.p>
                     </motion.div>
 
-                    {/* Process Steps */}
+                    {/* Process Steps — original screenshot layout */}
                     <div className="relative grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
                         {process.map((step, index) => (
                             <motion.div
@@ -348,12 +344,11 @@ export default function ServicesPage() {
                                 viewport={{ once: true, amount: 0.3 }}
                                 className="relative"
                             >
-                                {/* Number Circle Container */}
-                                <div className="flex flex-col items-center  text-center">
+                                <div className="flex flex-col items-center text-center">
                                     <div className="relative mb-8">
                                         {/* Number Circle */}
                                         <motion.div 
-                                            className="w-24 h-24 sm:w-28 sm:h-28 rounded-full  flex items-center justify-center shadow-xl relative z-10 "
+                                            className="w-24 h-24 sm:w-28 sm:h-28 rounded-full flex items-center justify-center shadow-xl relative z-10"
                                             style={{ backgroundColor: '#00346C' }}
                                             initial={{ scale: 0, rotate: -180 }}
                                             whileInView={{ scale: 1, rotate: 0 }}
@@ -417,7 +412,7 @@ export default function ServicesPage() {
 
                                     {/* Title */}
                                     <motion.h3 
-                                        className="text-xl sm:text-2xl font-bold text-black mb-4 font-heading px-2"
+                                        className="text-xl sm:text-2xl font-bold text-black mb-4 font-heading px-2 leading-tight"
                                         initial={{ opacity: 0, y: 10 }}
                                         whileInView={{ opacity: 1, y: 0 }}
                                         transition={{ duration: 0.5, delay: index * 0.15 + 0.5 }}
@@ -446,51 +441,7 @@ export default function ServicesPage() {
             <TechStack/>
 
             {/* CTA Section */}
-            <section className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8">
-                <div className="max-w-4xl mx-auto text-center">
-                    <motion.div
-                        initial={{ opacity: 0, y: 50, scale: 0.9 }}
-                        whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                        transition={{ duration: 0.8, ease: "easeOut" }}
-                        viewport={{ once: true, amount: 0.5 }}
-                    >
-                        <motion.h2 
-                            className="text-2xl sm:text-3xl md:text-4xl font-bold text-black mb-6 font-heading"
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.6, delay: 0.2 }}
-                            viewport={{ once: true }}
-                        >
-                            Ready to Transform Your Business?
-                        </motion.h2>
-                        <motion.p 
-                            className="text-gray-700 text-base sm:text-lg mb-8 font-body"
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.6, delay: 0.3 }}
-                            viewport={{ once: true }}
-                        >
-                            Let's discuss how our services can help you achieve your business goals and drive growth.
-                        </motion.p>
-                        <motion.div
-                            initial={{ opacity: 0, scale: 0.8 }}
-                            whileInView={{ opacity: 1, scale: 1 }}
-                            transition={{ duration: 0.6, delay: 0.4 }}
-                            viewport={{ once: true }}
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                        >
-                            <Link
-                                href="/Contact"
-                                className="inline-block w-full sm:w-auto text-white px-8 py-3.5 rounded-full font-semibold transition-all duration-300 text-base sm:text-lg shadow-lg hover:shadow-xl font-body"
-                                style={{ backgroundColor: '#00346C' }}
-                            >
-                                Get Started Today
-                            </Link>
-                        </motion.div>
-                    </motion.div>
-                </div>
-            </section>
+            <CtaSection />
         </div>
     );
 }

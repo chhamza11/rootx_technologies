@@ -1,5 +1,7 @@
 "use client";
 import ContactUs from "@/Components/ContactUs";
+import CtaSection from "@/Components/CtaSection";
+import HeroBackground from "@/Components/HeroBackground";
 import { motion } from "framer-motion";
 
 export default function ContactPage() {
@@ -8,16 +10,10 @@ export default function ContactPage() {
         <div className="min-h-screen bg-white overflow-x-hidden">
             {/* Hero Section */}
             <section className="relative min-h-[60vh] flex items-center mb-2 justify-center py-20 px-4 sm:px-6 lg:px-8 bg-white overflow-hidden">
+                {/* Background Effects */}
+                <HeroBackground />
                 {/* Background Pattern */}
-                <div
-                    className="absolute inset-0 opacity-[0.03]"
-                    style={{
-                        backgroundImage: `url('/bg.png')`,
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'center',
-                        backgroundRepeat: 'no-repeat'
-                    }}
-                />
+                
 
                 <div className="relative max-w-5xl mx-auto text-center z-10">
                     <motion.div
@@ -178,9 +174,11 @@ export default function ContactPage() {
 
                 </div>
             </section>
+            
             <ContactUs />
+            <CtaSection />
 
-            <div className="relative mt-10 w-full h-[200px] sm:h-[300px]">
+            <div className="relative mt-10 mb-2 w-full h-[200px] sm:h-[300px]">
                 <iframe
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3403.1789133873244!2d74.3147377!3d31.464264200000006!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x391901a961f801cb%3A0xb80393383235653f!2sRootX%20Technologies!5e0!3m2!1sen!2s!4v1772734846150!5m2!1sen!2s"
                     width="100%"
@@ -192,6 +190,8 @@ export default function ContactPage() {
                     title="RootX Technologies Location"
                 />
             </div>
+
+            
 
 
         </div>

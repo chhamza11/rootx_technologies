@@ -115,7 +115,7 @@ export default function Testimonials() {
                     {/* Navigation Buttons */}
                     <button
                         onClick={handlePrev}
-                        className="absolute hidden sm:block sm:-left-6 top-1/3 sm:top-1/2 -translate-y-1/2 -translate-x-4 sm:-translate-x-8 z-30 bg-white/90 backdrop-blur-sm text-gray-800 p-3 sm:p-4 rounded-full hover:bg-gray-100 transition-all duration-300 hover:scale-110 border border-gray-200 shadow-lg"
+                        className="absolute hidden lg:block sm:-left-6 top-1/3 sm:top-1/2 -translate-y-1/2 -translate-x-4 sm:-translate-x-4 z-30 bg-white/90 backdrop-blur-sm text-gray-800 p-3 sm:p-4 rounded-full hover:bg-gray-100 transition-all duration-300 hover:scale-110 border border-gray-200 shadow-lg"
                         aria-label="Previous testimonial"
                     >
                         <FaChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" />
@@ -123,7 +123,7 @@ export default function Testimonials() {
 
                     <button
                         onClick={handleNext}
-                        className="absolute right-0 hidden sm:block  top-1/2 -translate-y-1/2 translate-x-4 sm:translate-x-8 z-30 bg-white/90 backdrop-blur-sm text-gray-800 p-3 sm:p-4 rounded-full hover:bg-gray-100 transition-all duration-300 hover:scale-110 border border-gray-200 shadow-lg"
+                        className="absolute right-0 hidden lg:block  top-1/2 -translate-y-1/2 translate-x-4 sm:translate-x-8 z-30 bg-white/90 backdrop-blur-sm text-gray-800 p-3 sm:p-4 rounded-full hover:bg-gray-100 transition-all duration-300 hover:scale-110 border border-gray-200 shadow-lg"
                         aria-label="Next testimonial"
                     >
                         <FaChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
@@ -132,8 +132,8 @@ export default function Testimonials() {
                     {/* Main Content - Images Left, Text Right */}
                     <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-12">
                         {/* Left Side - Images with In-Place Animation */}
-                        <div className="relative w-full lg:w-1/2 flex items-center justify-center">
-                            <div className="relative flex items-center justify-center gap-4 sm:gap-6">
+                        <div className="relative w-full lg:w-1/2 flex items-center justify-center overflow-hidden px-2">
+                            <div className="relative flex items-center justify-center gap-2 sm:gap-4 md:gap-6 w-full max-w-[320px] sm:max-w-sm md:max-w-md mx-auto">
                                 {/* Left Position - Grayscale & Smaller */}
                                 <AnimatePresence mode="wait">
                                     <motion.div
@@ -142,14 +142,14 @@ export default function Testimonials() {
                                         animate={{ opacity: 0.4, scale: 1 }}
                                         exit={{ opacity: 0, scale: 0.8 }}
                                         transition={{ duration: 0.5 }}
-                                        className="relative w-24 h-32 sm:w-32 sm:h-40 md:w-36 md:h-44 rounded-2xl overflow-hidden grayscale"
+                                        className="relative w-[22vw] h-[30vw] max-w-[96px] max-h-[128px] sm:w-32 sm:h-40 md:w-36 md:h-44 rounded-2xl overflow-hidden grayscale flex-shrink-0"
                                     >
                                         <Image
                                             src={testimonials[getPrevIndex()].image}
                                             alt={testimonials[getPrevIndex()].name}
                                             fill
                                             className="object-cover"
-                                            sizes="150px"
+                                            sizes="(max-width: 640px) 22vw, 150px"
                                         />
                                     </motion.div>
                                 </AnimatePresence>
@@ -162,14 +162,14 @@ export default function Testimonials() {
                                         animate={{ opacity: 1, scale: 1 }}
                                         exit={{ opacity: 0, scale: 0.8 }}
                                         transition={{ duration: 0.5 }}
-                                        className="relative w-40 h-52 sm:w-48 sm:h-60 md:w-56 md:h-72 rounded-3xl overflow-hidden shadow-2xl border-4 border-blue-950 z-10"
+                                        className="relative w-[32vw] h-[44vw] max-w-[160px] max-h-[208px] sm:w-48 sm:h-60 md:w-56 md:h-72 rounded-3xl overflow-hidden shadow-2xl border-4 border-blue-950 z-10 flex-shrink-0"
                                     >
                                         <Image
                                             src={testimonials[currentIndex].image}
                                             alt={testimonials[currentIndex].name}
                                             fill
                                             className="object-cover"
-                                            sizes="250px"
+                                            sizes="(max-width: 640px) 32vw, 250px"
                                         />
                                     </motion.div>
                                 </AnimatePresence>
@@ -182,14 +182,14 @@ export default function Testimonials() {
                                         animate={{ opacity: 0.4, scale: 1 }}
                                         exit={{ opacity: 0, scale: 0.8 }}
                                         transition={{ duration: 0.5 }}
-                                        className="relative w-24 h-32 sm:w-32 sm:h-40 md:w-36 md:h-44 rounded-2xl overflow-hidden grayscale"
+                                        className="relative w-[22vw] h-[30vw] max-w-[96px] max-h-[128px] sm:w-32 sm:h-40 md:w-36 md:h-44 rounded-2xl overflow-hidden grayscale flex-shrink-0"
                                     >
                                         <Image
                                             src={testimonials[getNextIndex()].image}
                                             alt={testimonials[getNextIndex()].name}
                                             fill
                                             className="object-cover"
-                                            sizes="150px"
+                                            sizes="(max-width: 640px) 22vw, 150px"
                                         />
                                     </motion.div>
                                 </AnimatePresence>

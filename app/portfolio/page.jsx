@@ -4,6 +4,8 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { useState, useEffect, useRef } from "react";
 import Testimonials from "@/Components/Testimonials";
+import CtaSection from "@/Components/CtaSection";
+import HeroBackground from "@/Components/HeroBackground";
 
 export default function PortfolioPage() {
     const [activeFilter, setActiveFilter] = useState("All");
@@ -54,7 +56,7 @@ export default function PortfolioPage() {
             image: "/with_name_final.png",
             link: "https://play.google.com/store/apps/details?id=com.appointzme.business",
             isExternal: true,
-            
+
         },
         {
             id: 6,
@@ -64,7 +66,7 @@ export default function PortfolioPage() {
             image: "/EcoRide.png",
             link: "https://play.google.com/store/apps/details?id=com.flutterdev.ourjourney",
             isExternal: true,
-            
+
         },
         {
             id: 7,
@@ -110,16 +112,10 @@ export default function PortfolioPage() {
         <div className="min-h-screen bg-white overflow-x-hidden">
             {/* Hero Section */}
             <section className="relative min-h-[60vh] flex items-center mb-2 justify-center py-20 px-4 sm:px-6 lg:px-8 bg-white overflow-hidden">
+                {/* Background Effects */}
+                <HeroBackground />
                 {/* Background Pattern */}
-                <div
-                    className="absolute inset-0 opacity-[0.03]"
-                    style={{
-                        backgroundImage: `url('/bg.png')`,
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'center',
-                        backgroundRepeat: 'no-repeat'
-                    }}
-                />
+                
 
                 <div className="relative max-w-5xl mx-auto text-center z-10">
                     <motion.div
@@ -270,191 +266,144 @@ export default function PortfolioPage() {
                 </div>
             </section>
 
-            {/* Development Process Section - Horizontal Line with Steps */}
-            <section className="relative py-12 sm:py-16 md:py-24 px-4 sm:px-6 lg:px-8 bg-white">
-
-
+            {/* Development Process Section - Screenshot Accurate */}
+            <section className="relative py-12 sm:py-16 md:py-24 px-4 sm:px-6 lg:px-8">
                 <div className="relative z-10 max-w-7xl mx-auto">
-                    {/* Section Header */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8 }}
-                        viewport={{ once: true }}
-                        className="text-center mb-16"
-                    >
-                        <motion.div
-                            className="inline-block mb-6"
-                            initial={{ opacity: 0, scale: 0.8 }}
-                            whileInView={{ opacity: 1, scale: 1 }}
-                            transition={{ duration: 0.5, delay: 0.2 }}
-                            viewport={{ once: true }}
-                        >
-                            <span className="px-6 py-2.5 border-1 border-black rounded-full text-xs sm:text-sm font-semibold font-body text-black">
-                                Our Process
-                            </span>
+
+                    {/* Header */}
+                    <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} viewport={{ once: true }} className="text-center mb-16">
+                        <motion.div className="inline-block mb-6" initial={{ opacity: 0, scale: 0.8 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5, delay: 0.2 }} viewport={{ once: true }}>
+                            <span className="px-6 py-2.5 border border-black rounded-full text-xs sm:text-sm font-semibold font-body text-black">Our Process</span>
                         </motion.div>
-                        <motion.h2
-                            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-black mb-6 font-heading"
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.6, delay: 0.3 }}
-                            viewport={{ once: true }}
-                        >
+                        <motion.h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-black mb-6 font-heading" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.3 }} viewport={{ once: true }}>
                             Development Process
                         </motion.h2>
-                        <motion.p
-                            className="text-gray-700 text-base sm:text-lg md:text-xl max-w-3xl mx-auto font-body leading-relaxed"
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.6, delay: 0.4 }}
-                            viewport={{ once: true }}
-                        >
+                        <motion.p className="text-gray-900 text-base sm:text-lg md:text-xl max-w-3xl mx-auto font-body leading-relaxed" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.4 }} viewport={{ once: true }}>
                             Our streamlined process ensures efficient delivery and exceptional results for every project.
                         </motion.p>
                     </motion.div>
 
-                    {/* Horizontal Process Steps */}
-                    <div className="relative max-w-6xl mx-auto">
-                        {/* Horizontal Line - Desktop */}
-                        <div className="hidden md:block absolute top-[60px] left-0 right-0 h-1 bg-gradient-to-r from-[#00346C] via-[#00346C] to-[#00346C]"></div>
-
-                        {/* Process Steps */}
-                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-8 md:gap-4">
-                            {[
-                                {
-                                    number: "1",
-                                    title: "Requirement",
-                                    icon: (
-                                        <div className="relative w-14 h-14  sm:w-15 sm:h-15" style={{ filter: 'drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15))' }}>
-                                            <Image
-                                                src="/analysis-1.png"
-                                                alt="Satisfaction Rate"
-                                                fill
-                                                sizes="60px"
-                                                className="object-contain"
-                                            />
-                                        </div>
-                                    )
-                                },
-                                {
-                                    number: "2",
-                                    title: "UI/UX Design",
-                                    icon: (
-                                        <div className="relative w-14 h-14  sm:w-15 sm:h-15" style={{ filter: 'drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15))' }}>
-                                            <Image
-                                                src="/ui-design.png"
-                                                alt="Satisfaction Rate"
-                                                fill
-                                                sizes="60px"
-                                                className="object-contain"
-                                            />
-                                        </div>
-                                    )
-                                },
-                                {
-                                    number: "3",
-                                    title: "Development",
-                                    icon: (
-                                        <div className="relative w-14 h-14  sm:w-15 sm:h-15" style={{ filter: 'drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15))' }}>
-                                            <Image
-                                                src="/pro.png"
-                                                alt="Satisfaction Rate"
-                                                fill
-                                                sizes="60px"
-                                                className="object-contain"
-                                            />
-                                        </div>
-                                    )
-                                },
-                                {
-                                    number: "4",
-                                    title: "Testing",
-                                    icon: (
-                                        <div className="relative w-14 h-14  sm:w-15 sm:h-15" style={{ filter: 'drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15))' }}>
-                                            <Image
-                                                src="/QA.png"
-                                                alt="Satisfaction Rate"
-                                                fill
-                                                sizes="60px"
-                                                className="object-contain"
-                                            />
-                                        </div>
-                                    )
-                                },
-                                {
-                                    number: "5",
-                                    title: "Deployment",
-                                    icon: (
-                                        <div className="relative w-14 h-14 sm:w-15 sm:h-15" style={{ filter: 'drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15))' }}>
-                                            <Image
-                                                src="/dep.png"
-                                                alt="Satisfaction Rate"
-                                                fill
-                                                sizes="60px"
-                                                className="object-contain"
-                                            />
-                                        </div>
-                                    )
-                                }
-                            ].map((step, index) => (
+                    {/* Cards Row — simple grid on mobile, staggered on desktop */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:hidden">
+                        {[
+                            { number: "01", title: "Requirement", src: "/file-description.svg", description: "Deep architectural discovery and stakeholder alignment to map every technical nuance." },
+                            { number: "02", title: "UI/UX Design", src: "/brand-ubuntu.svg", description: "Iterative prototyping focused on ergonomic flows and pixel-perfect high-fidelity interfaces." },
+                            { number: "03", title: "Development", src: "/terminal-2.svg", description: "Robust, high-performance engineering using cutting-edge stacks and clean code principles." },
+                            { number: "04", title: "Testing", src: "/file-code (1).svg", description: "Rigorous QA, automated unit testing, and performance stress benchmarks for stability." },
+                            { number: "05", title: "Deployment", src: "/cloud-upload.svg", description: "Seamless CI/CD orchestration and cloud infrastructure handover for 24/7 reliability." },
+                        ].map((step, index) => {
+                            const isCenter = index === 2;
+                            return (
                                 <motion.div
                                     key={index}
-                                    initial={{ opacity: 0, y: 50 }}
+                                    initial={{ opacity: 0, y: 24 }}
                                     whileInView={{ opacity: 1, y: 0 }}
-                                    transition={{
-                                        duration: 0.6,
-                                        delay: index * 0.15,
-                                        ease: "easeOut"
-                                    }}
-                                    viewport={{ once: true, amount: 0.3 }}
-                                    className="flex flex-col items-center text-center relative"
+                                    transition={{ duration: 0.5, delay: index * 0.08 }}
+                                    viewport={{ once: true, amount: 0.2 }}
                                 >
-                                    {/* Circle with Icon */}
-                                    <motion.div
-                                        className="relative w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 rounded-full flex items-center justify-center shadow-2xl mb-6 bg-white border-4 z-10"
-                                        style={{ borderColor: '#00346C' }}
-                                        initial={{ scale: 0, rotate: -180 }}
-                                        whileInView={{ scale: 1, rotate: 0 }}
-                                        transition={{
-                                            duration: 0.7,
-                                            delay: index * 0.15 + 0.2,
-                                            type: "spring",
-                                            stiffness: 120
+                                    <div
+                                        className="relative rounded-2xl p-4 flex flex-col gap-3 cursor-default overflow-hidden h-full"
+                                        style={{
+                                            background: isCenter ? "linear-gradient(160deg,#00346C 0%,#001d3d 100%)" : "#f3f4f6",
+                                            border: isCenter ? "none" : "1px solid rgba(0,52,108,0.1)",
+                                            boxShadow: isCenter ? "0 12px 32px rgba(0,52,108,0.4)" : "0 2px 12px rgba(0,52,108,0.06)",
                                         }}
-                                        viewport={{ once: true }}
-                                        whileHover={{ scale: 1.1, rotate: 10 }}
                                     >
-                                        <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16" style={{ color: '#00346C' }}>
-                                            {step.icon}
+                                        <span className="absolute top-3 right-4 font-bold font-body select-none leading-none pointer-events-none"
+                                            style={{ fontSize: "2rem", color: isCenter ? "rgba(255,255,255,0.1)" : "rgba(0,52,108,0.07)" }}>
+                                            {step.number}
+                                        </span>
+                                        <div className="relative flex-shrink-0 rounded-xl overflow-hidden" style={{ width: 48, height: 48, background: "#00346C", padding: "10px" }}>
+                                            <div className="relative w-full h-full">
+                                                <Image src={step.src} alt={step.title} fill sizes="28px" className="object-contain brightness-0 invert" />
+                                            </div>
                                         </div>
-                                    </motion.div>
-
-                                    {/* Step Number */}
-                                    <motion.div
-                                        className="text-4xl sm:text-5xl font-bold mb-3 font-body"
-                                        style={{ color: '#00346C' }}
-                                        initial={{ opacity: 0, scale: 0.5 }}
-                                        whileInView={{ opacity: 1, scale: 1 }}
-                                        transition={{ duration: 0.5, delay: index * 0.15 + 0.4 }}
-                                        viewport={{ once: true }}
-                                    >
-                                        {step.number}
-                                    </motion.div>
-
-                                    {/* Title */}
-                                    <motion.h3
-                                        className="text-xl sm:text-2xl md:text-2xl font-bold text-black font-heading px-2 leading-tight"
-                                        initial={{ opacity: 0, y: 10 }}
-                                        whileInView={{ opacity: 1, y: 0 }}
-                                        transition={{ duration: 0.5, delay: index * 0.15 + 0.5 }}
-                                        viewport={{ once: true }}
-                                    >
-                                        {step.title}
-                                    </motion.h3>
+                                        <h3 className="font-bold font-body leading-snug" style={{ fontSize: "1rem", color: isCenter ? "#ffffff" : "#0d0d0d" }}>
+                                            {step.title}
+                                        </h3>
+                                        <p className="font-body leading-relaxed text-xs" style={{ color: isCenter ? "rgba(255,255,255,0.65)" : "rgba(0,0,0,0.9)" }}>
+                                            {step.description}
+                                        </p>
+                                    </div>
                                 </motion.div>
-                            ))}
-                        </div>
+                            );
+                        })}
+                    </div>
+
+                    {/* Desktop staggered layout */}
+                    <div className="hidden md:flex md:flex-row md:items-end justify-center gap-3 lg:gap-4 pb-8">
+                        {[
+                            { number: "01", title: "Requirement", src: "/file-description.svg", description: "Deep architectural discovery and stakeholder alignment to map every technical nuance." },
+                            { number: "02", title: "UI/UX Design", src: "/brand-ubuntu.svg", description: "Iterative prototyping focused on ergonomic flows and pixel-perfect high-fidelity interfaces." },
+                            { number: "03", title: "Development", src: "/terminal-2.svg", description: "Robust, high-performance engineering using cutting-edge stacks and clean code principles." },
+                            { number: "04", title: "Testing", src: "/file-code (1).svg", description: "Rigorous QA, automated unit testing, and performance stress benchmarks for stability." },
+                            { number: "05", title: "Deployment", src: "/cloud-upload.svg", description: "Seamless CI/CD orchestration and cloud infrastructure handover for 24/7 reliability." },
+                        ].map((step, index) => {
+                            const isCenter = index === 2;
+                            const isElevated = index === 1 || index === 3;
+                            const isOuter = index === 0 || index === 4;
+                            return (
+                                <motion.div
+                                    key={index}
+                                    className="w-full md:w-1/5  flex-shrink-0"
+                                    style={{
+                                        marginBottom: isOuter ? "120px" : isElevated ? "70px" : "0px",
+                                        marginLeft: isOuter ? "-5px" : "0px",
+                                        marginRight: isOuter ? "-5px" : "0px",
+                                    }}
+                                    initial={{ opacity: 0, y: 40 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    transition={{ duration: 0.55, delay: index * 0.1, ease: "easeOut" }}
+                                    viewport={{ once: true, amount: 0.2 }}
+                                >
+                                    <motion.div
+                                        className="relative rounded-2xl p-5 flex flex-col gap-3 cursor-default overflow-hidden"
+                                        style={{
+                                            background: isCenter ? "linear-gradient(160deg,#00346C 0%,#001d3d 100%)" : "#f3f4f6",
+                                            border: isCenter ? "none" : "1px solid rgba(0,52,108,0.1)",
+                                            // boxShadow:   isCenter ? "0 24px 64px rgba(0,52,108,0.5)" : "0 2px 16px rgba(0,52,108,0.07)",
+                                            minHeight: isCenter ? "300px" : isElevated ? "260px" : "230px",
+                                        }}
+                                        whileHover={{ y: -8, boxShadow: isCenter ? "0 5px 10px rgba(0,52,108,0.6)" : "0 5px 10px rgba(0,52,108,0.15)" }}
+                                        transition={{ type: "spring", stiffness: 280, damping: 22 }}
+                                    >
+                                        {/* Ghost number — top right */}
+                                        <span
+                                            className="absolute top-3 right-4 font-bold font-body select-none leading-none pointer-events-none"
+                                            style={{ fontSize: "clamp(2.2rem,4.5vw,3.2rem)", color: isCenter ? "rgba(255,255,255,0.7)" : "rgba(0,52,108,0.09)" }}
+                                        >
+                                            {step.number}
+                                        </span>
+
+                                        {/* Icon box — bigger, screenshot accurate */}
+                                        <motion.div
+                                            className="relative flex-shrink-0 rounded-xl overflow-hidden"
+                                            style={{
+                                                width: 56, height: 56,
+                                                background: isCenter ? "rgba(255,255,255,0.18)" : "#00346C",
+                                                padding: "10px",
+                                            }}
+                                            whileHover={{ scale: 1.08, rotate: 4 }}
+                                            transition={{ type: "spring", stiffness: 400 }}
+                                        >
+                                            <div className="relative w-full h-full">
+                                                <Image src={step.src} alt={step.title} fill sizes="36px" className="object-contain brightness-0 invert" />
+                                            </div>
+                                        </motion.div>
+
+                                        {/* Title */}
+                                        <h3 className="font-bold font-body leading-snug" style={{ fontSize: "clamp(1rem,1.6vw,1.15rem)", color: isCenter ? "#ffffff" : "#0d0d0d" }}>
+                                            {step.title}
+                                        </h3>
+
+                                        {/* Description */}
+                                        <p className="font-body leading-relaxed" style={{ fontSize: "clamp(0.78rem,1.2vw,0.88rem)", color: isCenter ? "rgba(255,255,255,0.65)" : "rgba(0,0,0,0.9)" }}>
+                                            {step.description}
+                                        </p>
+                                    </motion.div>
+                                </motion.div>
+                            );
+                        })}
                     </div>
                 </div>
             </section>
@@ -536,51 +485,7 @@ export default function PortfolioPage() {
             <Testimonials />
 
             {/* CTA Section */}
-            <section className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8">
-                <div className="max-w-4xl mx-auto text-center">
-                    <motion.div
-                        initial={{ opacity: 0, y: 50, scale: 0.9 }}
-                        whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                        transition={{ duration: 0.8, ease: "easeOut" }}
-                        viewport={{ once: true, amount: 0.5 }}
-                    >
-                        <motion.h2
-                            className="text-2xl sm:text-3xl md:text-4xl font-bold text-black mb-6 font-heading"
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.6, delay: 0.2 }}
-                            viewport={{ once: true }}
-                        >
-                            Have a Project in Mind?
-                        </motion.h2>
-                        <motion.p
-                            className="text-gray-700 text-base sm:text-lg mb-8 font-body"
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.6, delay: 0.3 }}
-                            viewport={{ once: true }}
-                        >
-                            Let's collaborate to bring your vision to life with our expertise and innovative solutions.
-                        </motion.p>
-                        <motion.div
-                            initial={{ opacity: 0, scale: 0.8 }}
-                            whileInView={{ opacity: 1, scale: 1 }}
-                            transition={{ duration: 0.6, delay: 0.4 }}
-                            viewport={{ once: true }}
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                        >
-                            <Link
-                                href="/Contact"
-                                className="inline-block w-full sm:w-auto text-white px-8 py-3.5 rounded-full font-semibold transition-all duration-300 text-base sm:text-lg shadow-lg hover:shadow-xl font-body"
-                                style={{ backgroundColor: '#00346C' }}
-                            >
-                                Start Your Project
-                            </Link>
-                        </motion.div>
-                    </motion.div>
-                </div>
-            </section>
+            <CtaSection />
         </div>
     );
 }

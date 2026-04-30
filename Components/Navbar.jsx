@@ -16,7 +16,7 @@ export default function Navbar() {
   return (
     <nav className="relative bg-white border-b border-gray-200 font-navbar">
       {/* Background Image Pattern */}
-      <div 
+      {/* <div 
         className="absolute inset-0 opacity-[0.03]"
         style={{
           backgroundImage: `url('/bg.png')`,
@@ -24,7 +24,7 @@ export default function Navbar() {
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat'
         }}
-      />
+      /> */}
       
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20 md:h-22">
