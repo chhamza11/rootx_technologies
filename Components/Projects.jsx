@@ -247,7 +247,7 @@ export default function Projects() {
       title: "Appointzme",
       category: "Appointment Booking",
       description: "Smart scheduling that reduces no-shows and enhances engagement.",
-      image: "/with_name_Final.png",
+      image: "/with_name_final.png",
       link: "/portfolio",
     },
   ];
